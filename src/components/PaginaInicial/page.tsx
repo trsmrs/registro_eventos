@@ -34,7 +34,7 @@ const LayoutPrincipal = () => {
     return (
         <div className="flex flex-col text-center w-[70%]">
             <h1>Eventos</h1>
-            <form action="" aria-required="true">
+            <form action="" >
 
                 <div className="flex flex-col align-center text-center border 1px w-90">
                     <input type="text" placeholder="Digite o Nome Do evento"
