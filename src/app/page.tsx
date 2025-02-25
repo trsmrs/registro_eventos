@@ -1,14 +1,14 @@
 
 import EventList from "@/components/EventList/page";
 import LayoutPrincipal from "@/components/PaginaInicial/page";
-import Image from "next/image";
+
 
 
 export default function Home() {
 
 
   return (
-    <div className="flex flex-col w-full border 1px justify-center items-center p-9">
+    <div className="bg-slate-500 shadow-md rounded-lg p-6 mb-4 flex flex-col w-[90%] justify-center items-center p-9 border mx-auto">
       <LayoutPrincipal />
       <div className="pt-10 w-[75%] ">
         <EventList />
