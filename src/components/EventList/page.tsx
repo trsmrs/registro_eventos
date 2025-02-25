@@ -3,6 +3,8 @@ import { collection, doc, onSnapshot, updateDoc, deleteDoc } from "firebase/fire
 import db from "@/lib/firebaseConfig";
 import { useEffect, useState } from "react";
 import { FaWheelchair } from "react-icons/fa"; // Ícone de PCD
+import { ToastContainer, toast } from "react-toastify"; // Componente e função do react-toastify
+import "react-toastify/dist/ReactToastify.css"; // Estilos do react-toastify
 
 interface Participant {
   name: string;
@@ -74,7 +76,7 @@ const EventList = () => {
     if (name === "cpf" && value.length === 14) {
       const isValid = validateCPF(value);
       if (!isValid) {
-        alert("CPF inválido!");
+        toast.error("CPF inválido!"); // Toast de erro
       }
     }
   };
@@ -83,7 +85,7 @@ const EventList = () => {
     const participant = newParticipants[eventId];
 
     if (!participant || !participant.cpf.trim()) {
-      alert("CPF é obrigatório");
+      toast.error("CPF é obrigatório"); // Toast de erro
       return;
     }
 
@@ -95,7 +97,7 @@ const EventList = () => {
         if (evento.disponibleSlots !== undefined && evento.disponibleSlots > 0) {
           const isParticipantAlreadyRegistered = evento.participants.some(p => p.cpf === participant.cpf);
           if (isParticipantAlreadyRegistered) {
-            alert("Participante já registrado!");
+            toast.error("Participante já registrado!"); // Toast de erro
             return;
           }
 
@@ -112,19 +114,20 @@ const EventList = () => {
             [eventId]: { name: "", cpf: "", pcd: false }
           }));
 
-          alert("Participante adicionado com sucesso!");
+          toast.success("Participante adicionado com sucesso!"); // Toast de sucesso
         } else {
-          alert("Não há vagas disponíveis!");
+          toast.error("Não há vagas disponíveis!"); // Toast de erro
         }
       }
     } catch (err) {
       console.error("Erro ao adicionar participante", err);
+      toast.error("Ocorreu um erro ao adicionar o participante."); // Toast de erro
     }
   };
 
   const handleDeleteParticipant = async () => {
     if (!participantToDelete || !eventIdToDelete || eventIdToDelete !== participantToDelete.eventId) {
-      alert("ID do evento incorreto. Forneça o ID correto para excluir.");
+      toast.error("ID do evento incorreto. Forneça o ID correto para excluir."); // Toast de erro
       return;
     }
 
@@ -136,33 +139,35 @@ const EventList = () => {
         const updatedParticipants = evento.participants.filter((p) => p.cpf !== participantToDelete.cpf);
         await updateDoc(eventDoc, {
           participants: updatedParticipants,
-          disponibleSlots: evento.disponibleSlots + 1, // Libera uma vaga
+          disponibleSlots: evento.disponibleSlots?? + 1, // Libera uma vaga
         });
 
-        alert("Participante excluído com sucesso!");
+        toast.success("Participante excluído com sucesso!"); // Toast de sucesso
         setParticipantToDelete(null); // Limpa o estado
         setEventIdToDelete(""); // Limpa o campo do ID
         setShowModal(false); // Fecha o modal
       }
     } catch (err) {
       console.error("Erro ao excluir participante", err);
+      toast.error("Ocorreu um erro ao excluir o participante."); // Toast de erro
     }
   };
 
   const handleDeleteEvent = async () => {
     if (!eventToDelete || !eventIdToDelete || eventIdToDelete !== eventToDelete.eventId) {
-      alert("ID do evento incorreto. Forneça o ID correto para excluir.");
+      toast.error("ID do evento incorreto. Forneça o ID correto para excluir."); // Toast de erro
       return;
     }
 
     try {
       await deleteDoc(doc(db, "events", eventToDelete.eventId));
-      alert("Evento excluído com sucesso!");
+      toast.success("Evento excluído com sucesso!"); // Toast de sucesso
       setEventToDelete(null); // Limpa o estado
       setEventIdToDelete(""); // Limpa o campo do ID
       setShowModal(false); // Fecha o modal
     } catch (err) {
       console.error("Erro ao excluir evento", err);
+      toast.error("Ocorreu um erro ao excluir o evento."); // Toast de erro
     }
   };
 
@@ -322,6 +327,19 @@ const EventList = () => {
           </div>
         </div>
       )}
+
+      {/* ToastContainer para exibir as notificações */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };
