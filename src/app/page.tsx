@@ -8,11 +8,9 @@ export default function Home() {
 
 
   return (
-    <div className="bg-slate-500 shadow-md rounded-lg p-6 mb-4 flex flex-col w-[90%] justify-center items-center p-9 border mx-auto">
+    <div className="bg-slate-500 shadow-md rounded-lg p-6 mb-4 flex flex-col w-full justify-center items-center border mx-auto">
       <LayoutPrincipal />
-      <div className="">
-        <EventList />
-      </div>
+      <EventList />
     </div>
   );
 }

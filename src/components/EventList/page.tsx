@@ -213,9 +213,11 @@ const EventList = () => {
         sm:grid-cols-2 
         md:grid-cols-3 
         lg:grid-cols-4 
-        xl:grid-cols-5 
+        xl:grid-cols-4 
         gap-2 p-4
-        w-full overflow-hidden">
+        w-full overflow-hidden
+        
+        ">
         
   {data.map((event, index) => (
     <div key={index} className="bg-slate-100 shadow-md rounded-lg p-4 overflow-hidden">
