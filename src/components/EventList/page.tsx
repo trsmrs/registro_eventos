@@ -209,92 +209,99 @@ const EventList = () => {
       ) : data.length === 0 ? (
         <p>Nenhum evento encontrado.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
-          {data.map((event, index) => (
-            <div key={index} className="bg-slate-100 shadow-md rounded-lg p-4">
-              <div className="bg-gray-50 border border-gray-300 rounded-lg shadow-md p-4">
-                <h2 className="text-xl mb-2 text-black text-center font-bold">Evento: {event.eventname}</h2>
-                <p className="bg-yellow-300 text-yellow-900 font-bold px-2 py-1 rounded-md text-sm">Data: {new Date(event.eventdata).toLocaleString()}</p>
-                <p className="text-black font-bold px-2 py-1 rounded-md text-sm mb-2">Observações: {event.observations}</p>
-                <p className="text-black font-bold px-2 py-1 rounded-md text-sm mb-2">Vagas: {event.slots}</p>
-                <p className={(event.disponibleSlots ?? 0) < 5 ? "text-red-700 font-bold px-2 py-1 rounded-md text-sm mb-2" : "text-black font-bold px-2 py-1 rounded-md text-sm mb-2"}>
-                  Vagas Disponíveis: {event.disponibleSlots}
-                </p>
-                <p className="text-black font-bold px-2 py-1 rounded-md text-sm">Registrados: {event.registereds}</p>
-              </div>
-              <h3 className="text-lg font-bold px-2 py-1 rounded-md mt-4 text-black">Participantes:</h3>
+        <div className="grid grid-cols-1
+        sm:grid-cols-2 
+        md:grid-cols-3 
+        lg:grid-cols-4 
+        xl:grid-cols-5 
+        gap-2 p-4
+        w-full overflow-hidden">
+        
+  {data.map((event, index) => (
+    <div key={index} className="bg-slate-100 shadow-md rounded-lg p-4 overflow-hidden">
+      <div className="bg-gray-50 border border-gray-300 rounded-lg shadow-md p-4 overflow-hidden">
+        <h2 className="text-xl mb-2 text-black text-center font-bold">Evento: {event.eventname}</h2>
+        <p className="bg-yellow-300 text-yellow-900 font-bold px-2 py-1 rounded-md text-sm">Data: {new Date(event.eventdata).toLocaleString()}</p>
+        <p className="text-black font-bold px-2 py-1 rounded-md text-sm mb-2">Observações: {event.observations}</p>
+        <p className="text-black font-bold px-2 py-1 rounded-md text-sm mb-2">Vagas: {event.slots}</p>
+        <p className={(event.disponibleSlots ?? 0) < 5 ? "text-red-700 font-bold px-2 py-1 rounded-md text-sm mb-2" : "text-black font-bold px-2 py-1 rounded-md text-sm mb-2"}>
+          Vagas Disponíveis: {event.disponibleSlots}
+        </p>
+        <p className="text-black font-bold px-2 py-1 rounded-md text-sm">Registrados: {event.registereds}</p>
+      </div>
+      <h3 className="text-lg font-bold px-2 py-1 rounded-md mt-4 text-black">Participantes:</h3>
 
-              <div className={(event.participants.length ?? 0) > 0 ? "bg-green-100 border border-green-400 rounded-md p-2" : ""}>
-                {event.participants.map((participant, pIndex) => (
-                  <div key={pIndex} className="text-black m-1 mx-2 flex items-center justify-between">
-                    <div className="flex items-center">
-                      <span className="text-sm">{participant.name}</span>
-                      {participant.pcd && <FaWheelchair className="ml-2 text-blue-500" />} {/* Ícone de PCD */}
-                    </div>
-                    <button
-                      onClick={() => {
-                        setParticipantToDelete({ eventId: event.id, cpf: participant.cpf });
-                        setModalType("participant");
-                        setShowModal(true);
-                      }}
-                      className="text-red-500 hover:text-red-700 text-sm"
-                    >
-                      Excluir
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              {/* Formulário para adicionar participantes */}
-              <div className="mt-4 flex flex-col">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Nome do participante"
-                  className="bg-gray-200 text-gray-500 border border-gray-300 rounded-md px-3 py-2 mb-2 text-sm"
-                  value={newParticipants[event.id]?.name || ''}
-                  onChange={(e) => handleParticipantChange(e, event.id)}
-                  required={true}
-                />
-                <input
-                  type="text"
-                  name="cpf"
-                  placeholder="CPF do participante"
-                  className="bg-gray-200 text-gray-500 border border-gray-300 rounded-md px-3 py-2 mb-2 text-sm"
-                  value={newParticipants[event.id]?.cpf || ''}
-                  maxLength={14}
-                  onChange={(e) => handleParticipantChange(e, event.id)}
-                />
-                <div className="flex items-center mb-2">
-                  <label className="text-black mr-2 text-sm">PCD?</label>
-                  <input
-                    type="checkbox"
-                    name="pcd"
-                    checked={newParticipants[event.id]?.pcd || false}
-                    onChange={(e) => handleParticipantChange(e, event.id)}
-                  />
-                </div>
-                <button
-                  onClick={() => handleAddParticipant(event.id)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition-all text-sm"
-                >
-                  Adicionar Participante
-                </button>
-
-                <button
-                  onClick={() => {
-                    setEventToDelete({ eventId: event.id });
-                    setModalType("event");
-                    setShowModal(true);
-                  }}
-                  className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md shadow-md mt-2 text-sm"
-                >
-                  Excluir Evento
-                </button>
-              </div>
+      <div className={(event.participants.length ?? 0) > 0 ? "bg-green-100 border border-green-400 rounded-md p-2 overflow-hidden" : ""}>
+        {event.participants.map((participant, pIndex) => (
+          <div key={pIndex} className="text-black m-1 mx-2 flex items-center justify-between">
+            <div className="flex items-center">
+              <span className="text-sm">{participant.name}</span>
+              {participant.pcd && <FaWheelchair className="ml-2 text-blue-500" />} {/* Ícone de PCD */}
             </div>
-          ))}
+            <button
+              onClick={() => {
+                setParticipantToDelete({ eventId: event.id, cpf: participant.cpf });
+                setModalType("participant");
+                setShowModal(true);
+              }}
+              className="text-red-500 hover:text-red-700 text-sm"
+            >
+              Excluir
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Formulário para adicionar participantes */}
+      <div className="mt-4 flex flex-col">
+        <input
+          type="text"
+          name="name"
+          placeholder="Nome do participante"
+          className="bg-gray-200 text-gray-500 border border-gray-300 rounded-md px-3 py-2 mb-2 text-sm"
+          value={newParticipants[event.id]?.name || ''}
+          onChange={(e) => handleParticipantChange(e, event.id)}
+          required={true}
+        />
+        <input
+          type="text"
+          name="cpf"
+          placeholder="CPF do participante"
+          className="bg-gray-200 text-gray-500 border border-gray-300 rounded-md px-3 py-2 mb-2 text-sm"
+          value={newParticipants[event.id]?.cpf || ''}
+          maxLength={14}
+          onChange={(e) => handleParticipantChange(e, event.id)}
+        />
+        <div className="flex items-center mb-2">
+          <label className="text-black mr-2 text-sm">PCD?</label>
+          <input
+            type="checkbox"
+            name="pcd"
+            checked={newParticipants[event.id]?.pcd || false}
+            onChange={(e) => handleParticipantChange(e, event.id)}
+          />
         </div>
+        <button
+          onClick={() => handleAddParticipant(event.id)}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition-all text-sm"
+        >
+          Adicionar Participante
+        </button>
+
+        <button
+          onClick={() => {
+            setEventToDelete({ eventId: event.id });
+            setModalType("event");
+            setShowModal(true);
+          }}
+          className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md shadow-md mt-2 text-sm"
+        >
+          Excluir Evento
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
       )}
 
       {/* Modal para confirmar exclusão */}

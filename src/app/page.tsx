@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="bg-slate-500 shadow-md rounded-lg p-6 mb-4 flex flex-col w-[90%] justify-center items-center p-9 border mx-auto">
       <LayoutPrincipal />
-      <div className="pt-10 w-[75%] ">
+      <div className="">
         <EventList />
       </div>
     </div>

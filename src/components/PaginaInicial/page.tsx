@@ -50,10 +50,14 @@ const LayoutPrincipal = () => {
     };
 
     return (
-        <div className="flex flex-col text-center w-[70%]">
+        <div className="flex flex-col text-center w-[80%]">
             <h1 className="text-2xl font-bold mb-4">Eventos</h1>
             <form onSubmit={handleSetData}>
-                <div className="bg-slate-300 shadow-md rounded-lg p-6 mb-4 flex flex-col space-y-4 align-center text-center border border-gray-300 rounded-lg p-4 w-full max-w-md mx-auto">
+                <div className="bg-slate-300 shadow-md rounded-lg p-6 mb-4 flex flex-col space-y-4 align-center
+                text-center border border-gray-300 rounded-lg p-4 w-full
+                max-w-md mx-auto
+                
+                ">
                     <input
                         type="text"
                         placeholder="Digite o Nome Do Evento"
