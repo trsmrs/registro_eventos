@@ -53,18 +53,18 @@ const LayoutPrincipal = () => {
         <div className="flex flex-col text-center w-[70%]">
             <h1 className="text-2xl font-bold mb-4">Eventos</h1>
             <form onSubmit={handleSetData}>
-                <div className="bg-slate-300 shadow-md rounded-lg p-6 mb-4 flex flex-col align-center text-center border border-gray-300 rounded-lg p-4 w-full max-w-md mx-auto">
+                <div className="bg-slate-300 shadow-md rounded-lg p-6 mb-4 flex flex-col space-y-4 align-center text-center border border-gray-300 rounded-lg p-4 w-full max-w-md mx-auto">
                     <input
                         type="text"
                         placeholder="Digite o Nome Do Evento"
-                        className="p-3 m-2 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
+                        className="w-full p-3 m-2 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
                         required
                         value={dados.eventName}
                         onChange={(e) => setDados(prevDados => ({ ...prevDados, eventName: e.target.value }))}
                     />
                     <input
                         type="datetime-local"
-                        className="p-3 m-2 text-black uppercase text-center border border-gray-300 rounded"
+                        className="w-full p-3 m-2 text-black uppercase text-center border border-gray-300 rounded"
                         required
                         value={dados.eventData}
                         onChange={(e) => setDados(prevDados => ({ ...prevDados, eventData: e.target.value }))}
@@ -72,7 +72,7 @@ const LayoutPrincipal = () => {
                     <input
                         type="number"
                         placeholder="Digite o número de vagas"
-                        className="p-3 m-2 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
+                        className="w-full p-3 m-2 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
                         required
                         value={dados.slots}
                         onChange={(e) => setDados(prevDados => ({ ...prevDados, slots: e.target.value }))}
@@ -80,7 +80,7 @@ const LayoutPrincipal = () => {
                     <textarea
                         rows={4}
                         placeholder="Observações do Evento"
-                        className="p-3 m-2 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
+                        className="w-full p-3 m-2 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
                         value={dados.observations}
                         onChange={(e) => setDados(prevDados => ({ ...prevDados, observations: e.target.value }))}
                     ></textarea>
@@ -94,7 +94,7 @@ const LayoutPrincipal = () => {
                     )}
                     <button
                         type="submit"
-                        className="bg-green-400 m-auto p-2 mt-2 mb-3 rounded text-black font-bold hover:bg-green-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                        className="w-full bg-green-400 m-auto p-2 mt-2 mb-3 rounded text-black font-bold hover:bg-green-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                         disabled={isSubmitting} // Desabilita o botão durante o envio
                     >
                         {isSubmitting ? "Enviando..." : "Criar Evento"}
