@@ -50,7 +50,7 @@ const LayoutPrincipal = () => {
     };
 
     return (
-        <div className="flex flex-col text-center w-[80%] mx-auto">
+        <div className="flex flex-col text-center w-full mx-auto">
             <h1 className="text-2xl font-bold mb-4">Eventos</h1>
             <form onSubmit={handleSetData}>
                 <div className="bg-slate-300 shadow-md rounded-lg p-6 mb-4 flex flex-col space-y-4 text-center border border-gray-300 w-full max-w-md mx-auto
@@ -95,7 +95,7 @@ const LayoutPrincipal = () => {
                     )}
                     <button
                         type="submit"
-                        className="w-full bg-green-400 p-2 mt-2 mb-3 rounded text-black font-bold hover:bg-green-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                        className="w-full ml-2 bg-green-400 p-2 mt-2 mb-3 rounded text-black font-bold hover:bg-green-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                         disabled={isSubmitting} // Desabilita o botão durante o envio
                     >
                         {isSubmitting ? "Enviando..." : "Criar Evento"}
