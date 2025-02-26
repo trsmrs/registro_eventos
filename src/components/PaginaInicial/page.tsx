@@ -58,14 +58,14 @@ const LayoutPrincipal = () => {
                     <input
                         type="text"
                         placeholder="Digite o Nome Do Evento"
-                        className="w-full p-3 m-2 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
+                        className="w-full p-3 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
                         required
                         value={dados.eventName}
                         onChange={(e) => setDados(prevDados => ({ ...prevDados, eventName: e.target.value }))}
                     />
                     <input
                         type="datetime-local"
-                        className="w-full p-3 m-2 text-black uppercase text-center border border-gray-300 rounded"
+                        className="w-full p-3 text-black uppercase text-center border border-gray-300 rounded"
                         required
                         value={dados.eventData}
                         onChange={(e) => setDados(prevDados => ({ ...prevDados, eventData: e.target.value }))}
@@ -73,7 +73,7 @@ const LayoutPrincipal = () => {
                     <input
                         type="number"
                         placeholder="Digite o número de vagas"
-                        className="w-full p-3 m-2 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
+                        className="w-full p-3 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
                         required
                         value={dados.slots}
                         onChange={(e) => setDados(prevDados => ({ ...prevDados, slots: e.target.value }))}
@@ -81,7 +81,7 @@ const LayoutPrincipal = () => {
                     <textarea
                         rows={4}
                         placeholder="Observações do Evento"
-                        className="w-full p-3 m-2 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
+                        className="w-full p-3 text-black uppercase placeholder:text-center text-center border border-gray-300 rounded"
                         value={dados.observations}
                         onChange={(e) => setDados(prevDados => ({ ...prevDados, observations: e.target.value }))}
                     ></textarea>
@@ -95,7 +95,7 @@ const LayoutPrincipal = () => {
                     )}
                     <button
                         type="submit"
-                        className="w-full ml-2 bg-green-400 p-2 mt-2 mb-3 rounded text-black font-bold hover:bg-green-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                        className="w-full bg-green-400 p-2 mt-2 mb-3 rounded text-black font-bold hover:bg-green-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                         disabled={isSubmitting} // Desabilita o botão durante o envio
                     >
                         {isSubmitting ? "Enviando..." : "Criar Evento"}
